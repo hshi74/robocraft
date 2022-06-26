@@ -129,6 +129,154 @@ GT init pose: [[0.86783522 0.14       0.5624547  1.         0.         0.
 [0.51720718 0.14       0.44728386] 0.20436560662686745 2.981011832932676
 [0.54934358 0.14       0.4687382 ] 0.3068459958230403 2.1495814494341023
 state_cur: torch.Size([4, 300, 3]), state_goal: torch.Size([1, 300, 3])
-sampling: max: -0.0425, mean: -0.0490, std: 0.0060
-Selected top reward seqs: tensor([-0.0570, -0.0486, -0.0480, -0.0425])
+sampling: max: -0.0419, mean: -0.0482, std: 0.0061
+Selected top reward seqs: tensor([-0.0565, -0.0480, -0.0463, -0.0419])
 Batch 0/4:
+reward seqs after 14 iterations: tensor([-0.0520], grad_fn=<CatBackward>)
+Batch 1/4:
+reward seqs after 15 iterations: tensor([-0.0443], grad_fn=<CatBackward>)
+Batch 2/4:
+reward seqs after 8 iterations: tensor([-0.0427], grad_fn=<CatBackward>)
+Batch 3/4:
+reward seqs after 18 iterations: tensor([-0.0396], grad_fn=<CatBackward>)
+Loss: 0.03964652493596077
+Optimal set of params:
+mid_point: tensor([[0.5179, 0.1400, 0.4423],
+        [0.5456, 0.1400, 0.4519]])
+angle: tensor([0.9178, 1.6155], grad_fn=<SelectBackward>)
+z_angle: tensor([0., 0.], grad_fn=<SelectBackward>)
+gripper_rate: tensor([0.0101, 0.0096], grad_fn=<ClampBackward1>)
+Optimal init pose seq: tensor([[0.2749, 0.1400, 0.7600, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.5635, 0.1400, 0.8515, 1.0000, 0.0000, 0.0000, 0.0000]],
+       grad_fn=<SliceBackward>)
+EMD: tensor([0.0441], dtype=torch.float64)
+Chamfer: tensor([0.0470], dtype=torch.float64)
+=============== Iteration 0 -> model_loss: tensor([0.0396]); sim_loss: tensor([0.0444], dtype=torch.float64) ===============
+=============== 1/2 ===============
+[0.42592455 0.14       0.47852874] 0.22928304073537548 2.8878907329053813
+[0.47058503 0.14       0.49879803] 1.6739853153008784 2.6585177166002474
+[0.48902103 0.14       0.57381671] 3.0428151311351455 0.12068988542879198
+[0.47948129 0.14       0.52803195] 2.0009507140745013 1.0370539140627555
+[0.47713751 0.14       0.52111705] 2.555328756735915 0.4569917166365622
+[0.45183563 0.14       0.54509159] 2.517070869405285 0.8040713548727342
+[0.48773608 0.14       0.52994202] 1.9556482748484187 1.4002071894123544
+[0.49590197 0.14       0.42241645] 0.23207139539203545 0.5110642111161953
+state_cur: torch.Size([4, 300, 3]), state_goal: torch.Size([1, 300, 3])
+sampling: max: -0.0357, mean: -0.0521, std: 0.0120
+Selected top reward seqs: tensor([-0.0636, -0.0580, -0.0510, -0.0357])
+Batch 0/4:
+reward seqs after 10 iterations: tensor([-0.0578], grad_fn=<CatBackward>)
+Batch 1/4:
+reward seqs after 13 iterations: tensor([-0.0506], grad_fn=<CatBackward>)
+Batch 2/4:
+reward seqs after 10 iterations: tensor([-0.0480], grad_fn=<CatBackward>)
+Batch 3/4:
+reward seqs after 12 iterations: tensor([-0.0345], grad_fn=<CatBackward>)
+Loss: 0.03448288142681122
+Optimal set of params:
+mid_point: tensor([[0.4771, 0.1400, 0.5211],
+        [0.4518, 0.1400, 0.5451]])
+angle: tensor([2.5553, 2.5171], grad_fn=<SelectBackward>)
+z_angle: tensor([0., 0.], grad_fn=<SelectBackward>)
+gripper_rate: tensor([0.0099, 0.0095], grad_fn=<ClampBackward1>)
+Optimal init pose seq: tensor([[0.8103, 0.1400, 0.7424, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.7763, 0.1400, 0.7790, 1.0000, 0.0000, 0.0000, 0.0000]],
+       grad_fn=<SliceBackward>)
+EMD: tensor([0.0363], dtype=torch.float64)
+Chamfer: tensor([0.0423], dtype=torch.float64)
+=============== Iteration 1 -> model_loss: tensor([0.0345]); sim_loss: tensor([0.0369], dtype=torch.float64) ===============
+=============== 1/2 ===============
+[0.43203689 0.14       0.429482  ] 1.34828208935724 2.9232518292520857
+[0.56014152 0.14       0.43544797] 2.2753332722957835 0.7707516027923625
+[0.46686737 0.14       0.53397334] 1.259430103088456 1.451945140757393
+[0.46503328 0.14       0.44871611] 1.7398094479805866 0.45552137186127306
+[0.50487382 0.14       0.46397301] 1.848826207661459 0.0444975323512809
+[0.53679822 0.14       0.50061106] 2.892897644255418 2.7324507302383276
+[0.43858067 0.14       0.46035718] 0.655616675831549 2.3563749292696947
+[0.55601571 0.14       0.49835212] 2.418288241499693 1.0160628105878702
+state_cur: torch.Size([4, 300, 3]), state_goal: torch.Size([1, 300, 3])
+sampling: max: -0.0335, mean: -0.0463, std: 0.0099
+Selected top reward seqs: tensor([-0.0559, -0.0519, -0.0440, -0.0335])
+Batch 0/4:
+reward seqs after 11 iterations: tensor([-0.0508], grad_fn=<CatBackward>)
+Batch 1/4:
+reward seqs after 19 iterations: tensor([-0.0474], grad_fn=<CatBackward>)
+Batch 2/4:
+reward seqs after 22 iterations: tensor([-0.0401], grad_fn=<CatBackward>)
+Batch 3/4:
+reward seqs after 15 iterations: tensor([-0.0335], grad_fn=<CatBackward>)
+Loss: 0.03346969559788704
+Optimal set of params:
+mid_point: tensor([[0.4320, 0.1400, 0.4295],
+        [0.5601, 0.1400, 0.4354]])
+angle: tensor([1.3483, 2.2753], grad_fn=<SelectBackward>)
+z_angle: tensor([0., 0.], grad_fn=<SelectBackward>)
+gripper_rate: tensor([0.0102, 0.0102], grad_fn=<ClampBackward1>)
+Optimal init pose seq: tensor([[0.3438, 0.1400, 0.8196, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.8192, 0.1400, 0.7402, 1.0000, 0.0000, 0.0000, 0.0000]],
+       grad_fn=<SliceBackward>)
+EMD: tensor([0.0369], dtype=torch.float64)
+Chamfer: tensor([0.0390], dtype=torch.float64)
+=============== Iteration 2 -> model_loss: tensor([0.0335]); sim_loss: tensor([0.0371], dtype=torch.float64) ===============
+=============== 1/2 ===============
+[0.5222732  0.14       0.46825349] 1.8313676654335471 0.2837485761019861
+[0.55109249 0.14       0.44213955] 2.622032587631027 1.7369824455776104
+[0.45380676 0.14       0.56130074] 1.4946313314520918 0.8885921375844344
+[0.48402063 0.14       0.54443401] 0.08399243569038989 0.3383171948474409
+[0.56523739 0.14       0.56137609] 2.4543165049515223 3.0751171673499753
+[0.56135022 0.14       0.42320167] 1.3039598099561676 0.7085123803562081
+[0.57583485 0.14       0.47264497] 1.977789034813553 2.1625450489747973
+[0.43455838 0.14       0.55696281] 2.4733994070836425 2.3546706419710683
+state_cur: torch.Size([4, 300, 3]), state_goal: torch.Size([1, 300, 3])
+sampling: max: -0.0396, mean: -0.0457, std: 0.0081
+Selected top reward seqs: tensor([-0.0569, -0.0466, -0.0398, -0.0396])
+Batch 0/4:
+reward seqs after 12 iterations: tensor([-0.0553], grad_fn=<CatBackward>)
+Batch 1/4:
+reward seqs after 16 iterations: tensor([-0.0420], grad_fn=<CatBackward>)
+Batch 2/4:
+reward seqs after 18 iterations: tensor([-0.0375], grad_fn=<CatBackward>)
+Batch 3/4:
+reward seqs after 13 iterations: tensor([-0.0384], grad_fn=<CatBackward>)
+Loss: 0.03747173398733139
+Optimal set of params:
+mid_point: tensor([[0.5758, 0.1400, 0.4726],
+        [0.4346, 0.1400, 0.5570]])
+angle: tensor([1.9778, 2.4734], grad_fn=<SelectBackward>)
+z_angle: tensor([0., 0.], grad_fn=<SelectBackward>)
+gripper_rate: tensor([0.0102, 0.0107], grad_fn=<ClampBackward1>)
+Optimal init pose seq: tensor([[0.7342, 0.1400, 0.8400, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.7485, 0.1400, 0.8048, 1.0000, 0.0000, 0.0000, 0.0000]],
+       grad_fn=<SliceBackward>)
+=============== 2/2 ===============
+[0.42148043 0.14       0.51698049] 2.317623426079794 2.0362330036268013
+[0.47430353 0.14       0.56568944] 2.173237636488103 2.461691386973625
+[0.48800342 0.14       0.56838781] 0.5811225105405211 2.61934190944511
+[0.46082483 0.14       0.45551256] 0.04614503507163184 2.1703850332800574
+state_cur: torch.Size([4, 300, 3]), state_goal: torch.Size([1, 300, 3])
+sampling: max: -0.0412, mean: -0.0448, std: 0.0034
+Selected top reward seqs: tensor([-0.0487, -0.0463, -0.0428, -0.0412])
+Batch 0/4:
+reward seqs after 13 iterations: tensor([-0.0474], grad_fn=<CatBackward>)
+Batch 1/4:
+reward seqs after 17 iterations: tensor([-0.0445], grad_fn=<CatBackward>)
+Batch 2/4:
+reward seqs after 13 iterations: tensor([-0.0418], grad_fn=<CatBackward>)
+Batch 3/4:
+reward seqs after 9 iterations: tensor([-0.0402], grad_fn=<CatBackward>)
+Loss: 0.04018794372677803
+Optimal set of params:
+mid_point: tensor([[0.4215, 0.1400, 0.5170]])
+angle: tensor([2.3176], grad_fn=<SelectBackward>)
+z_angle: tensor([0.], grad_fn=<SelectBackward>)
+gripper_rate: tensor([0.0095], grad_fn=<ClampBackward1>)
+Optimal init pose seq: tensor([[0.6932, 0.1400, 0.8105, 1.0000, 0.0000, 0.0000, 0.0000]],
+       grad_fn=<SliceBackward>)
+EMD: tensor([0.0437], dtype=torch.float64)
+Chamfer: tensor([0.0461], dtype=torch.float64)
+=============== Iteration 3 -> model_loss: tensor([0.0402]); sim_loss: tensor([0.0439], dtype=torch.float64) ===============
+torch.Size([3, 11, 14]) torch.Size([3, 40, 12])
+Best init pose: tensor([[0.2749, 0.1400, 0.7600, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.8103, 0.1400, 0.7424, 1.0000, 0.0000, 0.0000, 0.0000],
+        [0.7763, 0.1400, 0.7790, 1.0000, 0.0000, 0.0000, 0.0000]])
+Best model loss: tensor([0.0345]); Best sim loss: tensor([0.0369], dtype=torch.float64)
