@@ -5,7 +5,7 @@
 
 This is the codebase of RoboCraft in the simulator.
 
-**[Project](http://hxu.rocks/robocraft/) |  [Paper](https://arxiv.org/pdf/2205.02909.pdf)**
+**[Project Page](http://hxu.rocks/robocraft/) |  [Paper](https://arxiv.org/pdf/2205.02909.pdf)**
 
 <img src="images/robocraft.gif" width="600">
 
@@ -35,13 +35,13 @@ pip install -e .
 ### Generate Data
 - Run all the blocks in `simulator/plb/algorithms/test_tasks.ipynb`. 
 - You can control the number of videos to generate by changing the variable `n_vid`. The default is 5 for the purpose of debugging. We used 50 in the paper.
-- Note that it is easier to use ipython notebook when dealing with Taichi env for fast materialization.
+Note that it is easier to use ipython notebook when dealing with Taichi env for fast materialization.
 
 ### Sample Particles
 - `cd simulator/plb/algorithms`
 - Go to line 598 in `sample_data.py` and replace the string with the output folder name you can find in `simulator/dataset`
 - Run `python sample_data.py`
-- This step may take a while.
+Note that this step may take a while.
 
 ### Build the dataset for GNN
 - You will need to remove the old dataset if you want to update the dataset
@@ -62,7 +62,7 @@ The simulator folder contains the simulation environment we used for data collec
 The robocraft folder contains the code for learning the GNN and planning.
 
 ## Citation
-If you use the codebase in your research, please consider citing:
+If you use the codebase in your research, please cite:
 ```
 @article{shi2022robocraft,
   title={RoboCraft: Learning to See, Simulate, and Shape Elasto-Plastic Objects with Graph Networks},
