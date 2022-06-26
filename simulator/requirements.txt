@@ -1,0 +1,9 @@
+scipy
+numpy
+torch
+opencv-python
+tqdm
+taichi
+gym
+tensorboard
+yacs
