@@ -79,7 +79,7 @@ class Renderer:
         self.color_vec = ti.Vector.field(3, dtype=ti.f32)
         self.target_density_color = ti.Vector([0.1, 0.3, 0.9])
 
-        self.primitives = primitives[:2]
+        self.primitives = primitives # [:2]
 
         ti.root.dense(ti.ij, self.image_res).place(self.color_buffer)
         ti.root.dense(ti.ij, self.image_res).place(self.depth_buffer)

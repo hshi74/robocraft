@@ -25,7 +25,7 @@ def train(env, path, logger, args):
     agent = Agent(
         env=env, test_env=test_env, algo=algo, log_dir=path,
         device=device,
-        num_steps=args.num_steps,
+        num_steps=args.rl_num_steps,
         batch_size=256,
         memory_size=1000000,
         update_interval=1,

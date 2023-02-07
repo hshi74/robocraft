@@ -173,7 +173,7 @@ def main():
 
     print("Please click the pygame window to give it focus!!")
 
-    tee = Tee(os.path.join(rollout_dir, 'control.log'), 'w')
+    tee = Tee(os.path.join(rollout_dir, 'control.txt'), 'w')
 
     if shape_name in 'EZ':
         env.primitives.primitives[0].r[None] = 0.03

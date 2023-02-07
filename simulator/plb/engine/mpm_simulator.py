@@ -18,7 +18,7 @@ class MPMSimulator:
         n_grid = self.n_grid = int(128 * quality)
 
         self.dx, self.inv_dx = 1 / n_grid, float(n_grid)
-        self.dt = 0.5e-4 / quality      #
+        self.dt = 0.5e-4 / quality
         self.p_vol, self.p_rho = (self.dx * 0.5) ** 2, 1
         self.p_mass = self.p_vol * self.p_rho
 

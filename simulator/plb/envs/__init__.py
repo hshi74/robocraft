@@ -12,6 +12,7 @@ ENVS = []
 #             kwargs={'cfg_path': f"{env_name.lower()}.yml", "version": id+1},
 #             max_episode_steps=50
 #         )
+
 env_name = 'gripper_fixed'
 register(
         id = f'{env_name}-v{1}',
@@ -19,7 +20,6 @@ register(
         kwargs={'cfg_path': f"{env_name}.yml", "version": 1},
         max_episode_steps=3
         )
-
 
 def make(env_name, nn=False, sdf_loss=10, density_loss=10, contact_loss=1, soft_contact_loss=False):
     env: PlasticineEnv = gym.make(env_name, nn=nn)

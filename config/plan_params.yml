@@ -1,0 +1,13 @@
+gripper_sym_rod:
+  act_len: 15
+  init_grip: 0.08
+  grip_min: 0.004
+  theta_range:
+  - -3.141592653589793
+  - 3.141592653589793
+  phi1_range: # with respect to +z
+  - -1.5707963267948966
+  - 1.5707963267948966
+  phi2_range: # with respect to -z
+  - -1.5707963267948966
+  - 1.5707963267948966

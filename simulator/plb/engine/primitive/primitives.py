@@ -70,7 +70,7 @@ class Capsule(Primitive):
 
 
 class RollingPin(Capsule):
-    # rollingpin's capsule...
+    # rollerpin's capsule...
     @ti.kernel
     def forward_kinematics(self, f: ti.i32):
         vel = self.v[f]
@@ -171,14 +171,14 @@ class Cylinder(Primitive):
     @ti.func
     def _sdf(self, f, grid_pos):
         # convert it to a 2D box .. and then call the sdf of the 2d box..
-        d = ti.abs(ti.Vector([length(ti.Vector([grid_pos[0], grid_pos[2]])), grid_pos[1]])) - ti.Vector([self.h, self.r])
+        d = ti.abs(ti.Vector([length(ti.Vector([grid_pos[0], grid_pos[2]])), grid_pos[1]])) - ti.Vector([self.r, self.h])
         return min(max(d[0], d[1]), 0.0) + length(max(d, 0.0)) # if max(d, 0) < 0 or if max(d, 0) > 0
 
     @ti.func
     def _normal(self, f, grid_pos):
         p = ti.Vector([grid_pos[0], grid_pos[2]])
         l = length(p)
-        d = ti.Vector([l, ti.abs(grid_pos[1])]) - ti.Vector([self.h, self.r])
+        d = ti.Vector([l, ti.abs(grid_pos[1])]) - ti.Vector([self.r, self.h])
 
         # if max(d) > 0, normal direction is just d
         # other wise it's 1 if d[1]>d[0] else -d0

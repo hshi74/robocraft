@@ -1,24 +1,21 @@
 import gym
-from gym.spaces import Box
-import os
-import yaml
 import numpy as np
-from ..config import load
-from yacs.config import CfgNode
-from .utils import merge_lists
-
-import sys
-dynamics_path = os.path.join(os.getcwd(), '..', '..', '..', 'robocraft')
-sys.path.insert(1, dynamics_path)
-
-# for gnn models
+import os
 import torch
-from utils import load_data, get_scene_info, get_env_group, prepare_input
-from model import EarthMoverLoss, ChamferLoss, HausdorffLoss
+import yaml
+
+from ..config import load
+from dynamics.model import EarthMoverLoss, ChamferLoss, HausdorffLoss
+from dynamics.dy_utils import prepare_input
+from gym.spaces import Box
+from .utils import merge_lists
+from utils.data_utils import load_data, get_scene_info, get_env_group
+from yacs.config import CfgNode
+
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 
-
+##### DEPRECATED AND WON'T WORK #####
 class PlasticineEnv(gym.Env):
     def __init__(self, cfg_path, version, args=None, nn=False, learned_model=None, use_gpu=True, device=None):
         from ..engine.taichi_env import TaichiEnv
@@ -84,13 +81,12 @@ class PlasticineEnv(gym.Env):
         ]
         task_name = 'gripper'
         data_names = ['positions', 'shape_quats', 'scene_params']
-        # --- please add your path to robocraft here --- #
-        rollout_dir = f"../robocraft/data/data_{self.args.data_type}/train/"
+        # --- please add your path to dynamics here --- #
+        rollout_dir = f"../dynamics/data/data_{self.args.task_type}/train/"
 
         if task_name == "gripper":
             frame_name = str(0) + '.h5'
-            if self.args.shape_aug:
-                frame_name = 'shape_' + frame_name
+            frame_name = 'shape_' + frame_name
             frame_path = os.path.join(rollout_dir, str(0).zfill(3), frame_name)
         else:
             raise NotImplementedError
@@ -102,18 +98,14 @@ class PlasticineEnv(gym.Env):
         self.sstates_init = this_data[1]
         self.cur_pstates = this_data[0]
         ### load goal shape
-        if len(self.args.goal_shape_name) > 0 and \
-            self.args.goal_shape_name != 'none' and \
-            self.args.goal_shape_name[:3] != 'vid':
-            if len(self.args.goal_shape_name) > 1:
-                shape_type = 'simple'
-            else:
-                shape_type = "alphabet_regular"
+        if len(self.args.target_shape_name) > 0 and \
+            self.args.target_shape_name != 'none' and \
+            self.args.target_shape_name[:3] != 'vid':
             # --- load your path to dynamics here ---#
-            shape_dir = os.path.join('../robocraft', 'shapes', shape_type, self.args.goal_shape_name)
+            shape_dir = os.path.join('../dynamics', 'shapes', self.args.target_shape_name)
             self.goal_shapes = []
             for i in range(self.args.n_grips):
-                goal_frame_name = f'{self.args.goal_shape_name}.h5'
+                goal_frame_name = f'{self.args.target_shape_name}.h5'
                 goal_frame_path = os.path.join(shape_dir, goal_frame_name)
                 goal_data = load_data(data_names, goal_frame_path)
                 self.goal_shapes.append(torch.FloatTensor(goal_data[0]).unsqueeze(0)[:, :n_particle, :])
@@ -263,10 +255,9 @@ class PlasticineEnv(gym.Env):
             max_n_rel = 0
             for k in range(actions.shape[0]):
                 state_last = state_cur[k][-1]
-                attr, _, Rr_cur, Rs_cur, Rn_cur, cluster_onehot = prepare_input(state_last.detach().cpu().numpy(),
-                                                                                self.n_particle,
-                                                                                self.n_shape, self.args,
-                                                                                stdreg=self.args.stdreg)
+                attr, _, Rr_cur, Rs_cur, Rn_cur = prepare_input(
+                    self.args, state_last.detach().cpu().numpy()
+                )
                 attr = attr.to(self.device)
                 Rr_cur = Rr_cur.to(self.device)
                 Rs_cur = Rs_cur.to(self.device)
@@ -297,7 +288,7 @@ class PlasticineEnv(gym.Env):
             Rn_curs = torch.cat(Rn_curs, dim=0)
 
             inputs = [attrs, state_cur, Rr_curs, Rs_curs, Rn_curs, memory_init, group_gt, None]
-            pred_pos, pred_motion_norm, std_cluster = self.learned_model.predict_dynamics(inputs)
+            pred_pos, pred_motion_norm = self.learned_model.predict_dynamics(inputs)
 
             shape1 += actions[:, j, :3].unsqueeze(1).expand(-1,self.task_params["n_shapes_per_gripper"], -1) * 0.02
             shape2 += actions[:, j, 6:9].unsqueeze(1).expand(-1, self.task_params["n_shapes_per_gripper"], -1) * 0.02
@@ -331,8 +322,8 @@ class PlasticineEnv(gym.Env):
                 loss = self.emd_loss(state_final, state_goal)
             elif self.args.reward_type == "chamfer":
                 loss = self.chamfer_loss(state_final, state_goal)
-            elif self.args.reward_type == "emd_chamfer_h":
-                emd_weight, chamfer_weight, h_weight = self.task_params["loss_weights"]
+            elif self.args.reward_type == "chamfer_emd":
+                emd_weight, chamfer_weight = self.task_params["loss_weights"]
                 loss = 0
                 if emd_weight > 0:
                     emd = emd_weight * self.emd_loss(state_final, state_goal)
@@ -342,8 +333,6 @@ class PlasticineEnv(gym.Env):
                     chamfer = chamfer_weight * self.chamfer_loss(state_final, state_goal)
                     print(f'chamfer: {chamfer/chamfer_weight}')
                     loss += chamfer
-                if h_weight > 0:
-                    loss += h_weight * self.h_loss(state_final, state_goal)
             else:
                 raise NotImplementedError
 

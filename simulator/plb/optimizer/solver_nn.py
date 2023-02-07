@@ -101,8 +101,8 @@ def solve_nn(env, path, logger, args):
 
     taichi_env = env.unwrapped.taichi_env
     solver = SolverNN(taichi_env, logger, None,
-                      n_iters=(args.num_steps + T-1)//T, softness=args.softness, horizon=T,
-                      **{"optim.lr": args.lr, "optim.type": args.optim, "init_range": 0.0001})
+                      n_iters=(args.rl_num_steps + T-1)//T, softness=args.softness, horizon=T,
+                      **{"optim.lr": args.lr, "optim.type": args.rl_optim, "init_range": 0.0001})
 
 
     nn = taichi_env.nn

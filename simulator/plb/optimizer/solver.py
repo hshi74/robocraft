@@ -90,8 +90,8 @@ def solve_action(env, path, logger, args):
     taichi_env: TaichiEnv = env.unwrapped.taichi_env
     T = env._max_episode_steps
     solver = Solver(taichi_env, logger, None,
-                    n_iters=(args.num_steps + T-1)//T, softness=args.softness, horizon=T,
-                    **{"optim.lr": args.lr, "optim.type": args.optim, "init_range": 0.0001})
+                    n_iters=(args.rl_num_steps + T-1)//T, softness=args.softness, horizon=T,
+                    **{"optim.lr": args.lr, "optim.type": args.rl_optim, "init_range": 0.0001})
 
     action = solver.solve()
     # action = np.zeros((100, 3))  # np.random.uniform(-0.5, 0., size=(horizon, action_dim))

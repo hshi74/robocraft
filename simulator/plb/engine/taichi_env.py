@@ -4,6 +4,7 @@ import taichi as ti
 
 # TODO: run on GPU, fast_math will cause error on float64's sqrt; removing it cuases compile error..
 ti.init(arch=ti.gpu, debug=False, fast_math=True)
+ti.set_logging_level(ti.ERROR)
 
 @ti.data_oriented
 class TaichiEnv:
