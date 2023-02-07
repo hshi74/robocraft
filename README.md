@@ -1,6 +1,8 @@
 
 # RoboCraft: Learning to See, Simulate, and Shape Elasto-Plastic Object with Graph Networks
 
+## DEPRECATED: Please see the dev branch for an improved version of the RoboCraft codebase, especially if you're interested in real-world experiments! I'm actively maintaining this codebase, feel free to open an issue or shoot me an email (hshi74@stanford.edu) if you have any questions!
+
 ## Overview
 
 This is the codebase of [RoboCraft](http://hxu.rocks/robocraft/) in the simulator.
