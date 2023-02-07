@@ -3,8 +3,8 @@
 
 ## IMPORTANT: This is an improved version of the original RoboCraft codebase. This codebase mainly focuses on real-world experiments but could transfer to simulation environments with some refactorizations as well.
 
-<!-- ## [The controller codebase of RoboCraft](https://github.com/hshi74/deformable_ros)
-The controller is based on ROS Noetic and [Polymetis](https://facebookresearch.github.io/fairo/polymetis/). It's especially useful if you're working with a Franka Panda robot arm and a Franka hand gripper. -->
+## [The controller codebase of RoboCraft](https://github.com/hshi74/deformable_ros)
+The controller is based on ROS Noetic and [Polymetis](https://facebookresearch.github.io/fairo/polymetis/). It's especially useful if you're working with a Franka Panda robot arm and a Franka hand gripper.
 
 ## Overview
 
@@ -24,23 +24,23 @@ The controller is based on ROS Noetic and [Polymetis](https://facebookresearch.g
 ```bash
 # clone the repo
 git clone https://github.com/hshi74/RoboCraft.git
-cd RoboCraft
 
 # create the conda environment
 conda env create -f robocraft.yml
 conda activate robocraft
 
 # install requirements for the simulator
-cd simulator
-pip install -e .
+pip install -e simulator
 
 # install pytorch
 pip install torch==1.12.0+cu113 torchvision==0.13.0+cu113 torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cu113
+
+# add this line to your bashrc
+export PYTHONPATH="${PYTHONPATH}:/path/to/robocraft"
 ```
 
 ### Generate Data
-<!-- - See [the controller codebase of RoboCraft](https://github.com/hshi74/deformable_ros) -->
-- We will release the controller codebase soon. Stay tuned!
+See [the controller codebase of RoboCraft](https://github.com/hshi74/deformable_ros)
 
 ### For all the following bash or python scripts, you will need to modify certain hyperparameters (like directories) before you run them.
 

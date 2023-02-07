@@ -267,21 +267,6 @@ def add_shape_to_seq(args, state_seq, init_pose_seq, act_seq):
             step = i * act_seq.shape[1] + j
             for k in range(len(args.tool_dim[args.env])):
                 tool_pos_list[k] += np.tile(act_seq[i, j, 6*k:6*k+3], (tool_pos_list[k].shape[0], 1))
-                act_rot = act_seq[i, j, 6*k+3:6*k+6]
-                if args.full_repr and 'roller' in args.env and np.any(act_rot):
-                    act_trans = np.mean(tool_pos_list[k], axis=0)
-                    tool_pos_list[k] -= np.tile(act_trans, (tool_pos_list[k].shape[0], 1))
-                    # rot_axis = [-act_seq[i, j, 6*k+1], act_seq[i, j, 6*k], 0]
-                    # hard code...
-                    if 'large' in args.env:
-                        rot_axis = -np.cross(tool_pos_list[k][0] - tool_pos_list[k][1], tool_pos_list[k][0] - tool_pos_list[k][2])
-                    else:
-                        if args.stage == 'dy':
-                            rot_axis = np.cross(tool_pos_list[k][0] - tool_pos_list[k][1], tool_pos_list[k][0] - tool_pos_list[k][2])
-                        else:
-                            rot_axis = np.cross(tool_pos_list[k][0] - tool_pos_list[k][1], tool_pos_list[k][0] - tool_pos_list[k][42])
-                    tool_pos_list[k] = (axangle2mat(rot_axis, act_rot[0]) @ tool_pos_list[k].T).T
-                    tool_pos_list[k] += np.tile(act_trans, (tool_pos_list[k].shape[0], 1))
 
             state_new = np.concatenate([state_seq[step], args.floor_state, *tool_pos_list])
             state_seq_new.append(state_new)

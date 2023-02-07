@@ -1,6 +1,6 @@
 tool_type="gripper_sym_rod_robot_v2_surf_nocorr_full"
 debug=1
-target_shape_name="3d_real/pagoda"
+target_shape_name="3d_real/hourglass"
 optim_algo="GD"
 CEM_sample_size=20
 control_loss_type="chamfer"

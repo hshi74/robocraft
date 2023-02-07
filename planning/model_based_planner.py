@@ -50,7 +50,7 @@ class ModelBasedPlanner(object):
         self.CEM_decay_factor = args.CEM_decay_factor
 
         self.CEM_param_var = [1e-1, 1e-1, 1e-1, 1e-1, 1e-1]
-        self.sample_ratio = {1: (4, 4, 4, 4, 4)}
+        self.sample_ratio = {1: (4, 4, 4, 4, 1)}
 
         self.is_3d = is_3d
 
@@ -410,7 +410,10 @@ class ModelBasedPlanner(object):
 
 
     def render_selections(self, name, state_cur, param_seq_opt, loss_opt, state_seq_opt, target_shape):
-        min_bounds = torch.min(state_cur, dim=1).values.squeeze().cpu().numpy()
+        # import pdb; pdb.set_trace()
+        init_pose_seqs = param_seqs_to_init_poses(self.args, self.center, self.plan_params, torch.stack(param_seq_opt), is_3d=self.is_3d)
+        act_seqs = param_seqs_to_actions(self.plan_params, torch.stack(param_seq_opt), is_3d=self.is_3d)
+
         row_titles = []
         state_seq_wshape_list = []
         for i in range(len(param_seq_opt)):
@@ -420,11 +423,9 @@ class ModelBasedPlanner(object):
                 title += f'{[[round(x.item(), 3) for x in y] for y in param_seq_opt[i][j:j+2]]}'
             title += f' -> {round(loss_opt[i].item(), 4)}'
             row_titles.append(title)
-            init_pose_seq = params_to_init_pose(
-                self.args, self.center, self.plan_params, param_seq_opt[i], is_3d=self.is_3d)
-            act_seq = params_to_actions(self.plan_params, param_seq_opt[i], step=self.args.time_step, is_3d=self.is_3d)
+            
             state_seq_wshape = add_shape_to_seq(self.args, state_seq_opt[i].cpu().numpy(), 
-                init_pose_seq.cpu().numpy(), act_seq.cpu().numpy())
+                init_pose_seqs[i].cpu().numpy(), act_seqs[i].cpu().numpy())
             state_seq_wshape_list.append(state_seq_wshape)
 
         print(f"{name} best loss seqs: {loss_opt}")
