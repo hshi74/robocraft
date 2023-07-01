@@ -1,7 +1,25 @@
 
 # RoboCraft: Learning to See, Simulate, and Shape Elasto-Plastic Object with Graph Networks
 
-## DEPRECATED: Please see the dev branch for an improved version of the RoboCraft codebase, especially if you're interested in real-world experiments! I'm actively maintaining this codebase, feel free to open an issue or shoot me an email (hshi74@stanford.edu) if you have any questions!
+## Important
+
+1. Please check out our new paper if interested: **RoboCook: Long-Horizon Elasto-Plastic Object Manipulation with Diverse Tools**
+    - [Website](https://hshi74.github.io/robocook/)  
+    - [Code](https://github.com/hshi74/robocook)
+    - [Paper](https://arxiv.org/abs/2306.14447) 
+1. Please see the dev branch for an improved version of the RoboCraft codebase, especially if you're interested in real-world experiments!
+
+
+## Citation
+If you use the codebase in your research, please cite:
+```
+@article{shi2022robocraft,
+  title={RoboCraft: Learning to See, Simulate, and Shape Elasto-Plastic Objects with Graph Networks},
+  author={Shi, Haochen and Xu, Huazhe and Huang, Zhiao and Li, Yunzhu and Wu, Jiajun},
+  journal={arXiv preprint arXiv:2205.02909},
+  year={2022}
+}
+```
 
 ## Overview
 
@@ -61,13 +79,3 @@ bash scripts/utils/move_data.sh ngrip_fixed sample_ngrip_fixed_[timestamp of the
 - The simulator folder contains the simulation environment we used for data collection and particle sampling. 
 - The robocraft folder contains the code for learning the GNN and planning.
 
-## Citation
-If you use the codebase in your research, please cite:
-```
-@article{shi2022robocraft,
-  title={RoboCraft: Learning to See, Simulate, and Shape Elasto-Plastic Objects with Graph Networks},
-  author={Shi, Haochen and Xu, Huazhe and Huang, Zhiao and Li, Yunzhu and Wu, Jiajun},
-  journal={arXiv preprint arXiv:2205.02909},
-  year={2022}
-}
-```
