@@ -548,7 +548,7 @@ def find_relations_neighbor(pos, query_idx, anchor_idx, radius, order, var=False
         if count_neighbors == 0:
             continue
 
-        receiver = np.ones(count_neighbors, dtype=np.int) * query_idx[i]
+        receiver = np.ones(count_neighbors, dtype=int) * query_idx[i]
         sender = np.array(anchor_idx[neighbors[i]])
 
         # receiver, sender, relation_type
@@ -588,7 +588,7 @@ def find_k_relations_neighbor(k, positions, query_idx, anchor_idx, radius, order
             pass
 
     for i in range(len(neighbors)):
-        receiver = np.ones(min_neighbors, dtype=np.int) * query_idx[i]
+        receiver = np.ones(min_neighbors, dtype=int) * query_idx[i]
         sender = np.array(anchor_idx[neighbors[i][:min_neighbors]])
 
         # receiver, sender, relation_type
@@ -697,7 +697,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
         # visualize_neighbors(pos, pos, 0, nodes)
         # print(np.sort(dis)[:10])
 
-        floor = np.ones(nodes.shape[0], dtype=np.int) * n_particle
+        floor = np.ones(nodes.shape[0], dtype=int) * n_particle
         rels += [np.stack([nodes, floor], axis=1)]
 
         # to primitive
@@ -706,7 +706,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
         # print('visualize prim neighbors')
         # visualize_neighbors(pos, pos, 0, nodes)
         # print(np.sort(dis)[:10])
-        prim = np.ones(nodes.shape[0], dtype=np.int) * (n_particle+1)
+        prim = np.ones(nodes.shape[0], dtype=int) * (n_particle+1)
         rels += [np.stack([nodes, prim], axis=1)]
 
         """Start to do K-Means"""
@@ -730,7 +730,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
                 # if ind == 8:
                 #     import pdb; pdb.set_trace()
                 #     visualize_neighbors(pos, pos, 0, nodes)
-                floor = np.ones(nodes.shape[0], dtype=np.int) * (n_particle + ind)
+                floor = np.ones(nodes.shape[0], dtype=int) * (n_particle + ind)
                 rels += [np.stack([nodes, floor], axis=1)]
                 rels2 += [np.stack([nodes, floor], axis=1)]
             for ind in range(22):
@@ -744,9 +744,9 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
                 # if ind == 15:
                     # import pdb; pdb.set_trace()
                 # visualize_neighbors(pos, pos, 0, nodes1)
-                prim1 = np.ones(nodes1.shape[0], dtype=np.int) * (n_particle + 9 + ind)
+                prim1 = np.ones(nodes1.shape[0], dtype=int) * (n_particle + 9 + ind)
                 rels += [np.stack([nodes1, prim1], axis=1)]
-                prim2 = np.ones(nodes2.shape[0], dtype=np.int) * (n_particle + 9 + ind)
+                prim2 = np.ones(nodes2.shape[0], dtype=int) * (n_particle + 9 + ind)
                 rels2 += [np.stack([nodes2, prim2], axis=1)]
 
                 # disp2 = np.sqrt(np.sum((pos[:n_particle, [0, 2]] - pos[n_particle + 2, [0, 2]]) ** 2, 1))
@@ -772,7 +772,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
             # visualize_neighbors(pos, pos, 0, nodes)
             # print(np.sort(dis)[:10])
 
-            floor = np.ones(nodes.shape[0], dtype=np.int) * n_particle
+            floor = np.ones(nodes.shape[0], dtype=int) * n_particle
             rels += [np.stack([nodes, floor], axis=1)]
 
             # to primitive
@@ -786,7 +786,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
             # visualize_neighbors(pos, pos, 0, nodes1)
             # print(np.sort(dis)[:10])
             # print(np.sort(dis)[:10])
-            prim1 = np.ones(nodes1.shape[0], dtype=np.int) * (n_particle + 1)
+            prim1 = np.ones(nodes1.shape[0], dtype=int) * (n_particle + 1)
             rels += [np.stack([nodes1, prim1], axis=1)]
 
             disp2 = np.sqrt(np.sum((pos[:n_particle, [0,2]] - pos[n_particle + 2, [0,2]]) ** 2, 1))
@@ -796,7 +796,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
             # print('visualize prim neighbors')
             # visualize_neighbors(pos, pos, 0, nodes)
             # print(np.sort(dis)[:10])
-            prim2 = np.ones(nodes2.shape[0], dtype=np.int) * (n_particle + 2)
+            prim2 = np.ones(nodes2.shape[0], dtype=int) * (n_particle + 2)
             rels += [np.stack([nodes2, prim2], axis=1)]
 
 
@@ -823,7 +823,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
             print(np.sort(dis)[:10])
         '''
 
-        floor = np.ones(nodes.shape[0], dtype=np.int) * n_particle
+        floor = np.ones(nodes.shape[0], dtype=int) * n_particle
         rels += [np.stack([nodes, floor], axis=1)]
 
     elif args.env == 'MassRope':
@@ -836,7 +836,7 @@ def prepare_input(positions, n_particle, n_shape, args, var=False, stdreg=0):
             print(np.sort(dis)[:10])
         '''
 
-        pin = np.ones(nodes.shape[0], dtype=np.int) * n_particle
+        pin = np.ones(nodes.shape[0], dtype=int) * n_particle
         rels += [np.stack([nodes, pin], axis=1)]
     else:
         AssertionError("Unsupported env %s" % args.env)
@@ -1325,7 +1325,7 @@ def alpha_shape_3D(pos, alpha):
 
 def farthest_point_sampling(points, K_ratio=0.5):
     K = int(K_ratio * points.shape[0])
-    fp_idx = np.zeros(K, dtype=np.int)
+    fp_idx = np.zeros(K, dtype=int)
     fp_idx[0] = np.random.randint(points.shape[0])
     distances = ((points[fp_idx[0]] - points)**2).sum(axis=1)
     for i in range(1, K):
